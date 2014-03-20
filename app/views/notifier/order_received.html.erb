@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<%= t('.dear') %><%= @order.name %><br />
+<%= t('.thanks') %><br />
+<%= t('.you_ordered') %><br /><br />
+<style>
+table,th,td
+{
+border:1px solid black;
+border-collapse: collapse;
+text-align: right;
+}
+
+</style>
+<table>
+<%= render @order.line_items %>
+
+<tr><td><%= t('.sub_total') %></td><td><%= number_to_currency(@order.total - @SHIPPING) %></td></tr>
+<tr><td><%= t('.shipping') %></td><td><%= number_to_currency(@SHIPPING) %></td></tr>
+<tr><td>Total : </td><td><%= number_to_currency(@order.total) %></td></tr>
+
+<% case %>
+<% when @order.pay_type == "check" %>
+<tr><td><%= "Total (Euro) :" %></td><td><b><%=  "#{number_to_currency(@order.conv_total, :unit => "€", :separator => ".", :delimiter => " ", :format => "%n %u")}" %></b></td></tr></table>
+<%= t('.please_pay_by_check') %>
+<%= t('.valid_until') %>
+<% when @order.pay_type == "Wire Transfer" %>
+<tr><td><%= "Total (Euro) :" %></td><td><b><%= " #{number_to_currency(@order.conv_total, :unit => "€", :separator => ".", :delimiter => " ", :format => "%n %u")}" %></b></td></tr></table>
+<br />
+<%= t('.please_pay_by_wire') %>
+<%= t('.valid_until') %>
+<% else %>
+</table>
+<%= t('.please_pay') %><br/>
+<%= @order.btc_address %>
+<% end %>
+<br /><br />
+<%= t('.mailer_notice') %><br />
+<%= "#{@order.address} | " + "#{@order.city} | " + "#{@order.zip_code} | " + "#{@order.country} " %><br />

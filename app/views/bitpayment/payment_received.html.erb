@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<h3>Payment received</h3>
+<p>
+Dear <%= @invoice.name %><br />
+This is just to let you know that we've received your payment for your recent order.<br />
+Your order will be shipped soon to your address:<br />
+<%= "#{@invoice.adresse} | " + "#{@invoice.city} | " + "#{@invoice.zip_code} | " + "#{@invoice.country} " %><br /><br />
+ 
+Thanks !
+</p>

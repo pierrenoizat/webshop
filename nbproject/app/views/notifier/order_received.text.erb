@@ -1,0 +1,7 @@
+Dear <%= @order.name %>
+Thanks for your order from the iCoin Store.
+You ordered the following items:
+
+<%= render @order.line_items %>
+
+We'll send you a separate e-mail when your order ships.

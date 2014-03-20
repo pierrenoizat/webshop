@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Valeur:</b>
+  <%= @rate.valeur %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%= @rate.name %>
+</p>
+
+
+<%= link_to 'Edit', edit_rate_path(@rate) %> |
+<%= link_to 'Back', rates_path %>

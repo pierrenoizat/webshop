@@ -1,0 +1,65 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+en:
+  layouts:
+   application:
+    title: "The iCoin Store"
+    home: "Home"
+    questions: "Questions"
+    news: "News"
+    contact: "Contact"
+
+  store:
+   index:
+    title_html: "Catalog"
+    add_html: "Add to Cart"
+
+  carts:
+   cart:
+    title: "Your Cart"
+    empty: "Empty Cart"
+    checkout: "Checkout"
+
+  number:
+   currency:
+    format:
+     unit: "BTC "
+     precision: 2
+     separator: "."
+     delimiter: ","
+     format: "%u%n"
+
+  activerecord:
+   errors:
+    messages:
+     inclusion: "Not in the list"
+     blank: "This field cannot remain blank"
+   models:
+    order: "order"
+   attributes:
+    order:
+     address: "Adress :"
+     name: "Name :"
+     email: "E-mail :"
+     pay_type: "Payment Method :"
+
+  orders:
+   new:
+    legend: "Please Enter your Details"
+   form:
+    name: "Name :"
+    address_html: "Address :"
+    email: "E-mail :"
+    pay_type: "Pay with "
+    pay_prompt_html: "Select a Payment Method"
+    submit: "Place Order"
+
+  errors:
+   template:
+    body: "There is a problem with at least one of the following fields:"
+    header:
+     one: "1 problem has prevented us from saving this %{model}"
+     other: "%{count} problems have prevented us from saving this %{model}"
+
+  thanks: "Thank you for your order."

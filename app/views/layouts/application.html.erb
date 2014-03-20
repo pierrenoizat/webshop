@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Microbitcoin Store</title>
+  <%= favicon_link_tag %>
+  <%= stylesheet_link_tag "scaffold" %>
+  <%= stylesheet_link_tag "depot", :media => "all" %>
+  <%= javascript_include_tag :defaults %>
+  <%= csrf_meta_tag %>
+</head>
+<body id="store">
+  <div id="banner">
+	
+	<ul class="locale">
+		<% names = { :fr => 'Français', :en =>'English' }.with_indifferent_access %>
+	    <% I18n.available_locales.each do |l| %>
+	    <li class="locale">
+	    	<%= link_to({ :l => l, :r => params[:r] }) do %>
+	        <%= image_tag "/images/flags/#{l}.png", :title => names[l] %>
+			<% end %>
+			
+		</li>
+		<% end %>
+	</ul>
+	<%= link_to image_tag("banner_bitcoin_france_left.png"), store_path %>
+	<div style="float:right"><%= link_to image_tag("banner_black_right.png"), store_path %></div>
+  </div><!-- end banner -->
+  <div id="columns">
+    <div id="side">
+      <div id="cart">
+	<% if @cart %>
+	<%= hidden_div_if(@cart.line_items.empty?, :id => "cart") do %>
+	<%= render @cart %><br />
+	<% end %>
+	<% end %>
+      </div><!-- end cart -->
+      <% temps = case I18n.locale.to_s %>
+		<% when 'en' then @current_time.strftime("%B %d, %Y") %>
+		<% when 'fr' then @current_time.strftime("%d %m %Y") %>
+		<% else @current_time.strftime("%B %d, %Y") %>
+		<% end %>
+	<%= " #{temps} - " %>
+      <%= @current_time.strftime("%H:%M") %><br /><br />
+<a href= <%="#{$EXCHANGE_RATE_SOURCE}"%> target="_blank">1 ฿ = <b><%= number_to_currency($CONV_RATE, :unit => "&euro;", :separator => ".", :delimiter => " ", :format => "%n %u") %></b></a><br /><br />
+
+    <%= link_to t('.home'), store_path %><br />
+	<!-- <%= link_to t('.gallery'), "#{$MAIN_URL}/pages/gallery" %><br /> -->
+	<!-- <%= link_to t('.how'), "#{$MAIN_URL}/pages/coins" %><br />-->
+	<%= link_to t('.shipping'), "#{$MAIN_URL}/pages/shipping" %><br />
+	<!-- <%= link_to t('.questions'), "#{$MAIN_URL}/pages/faq" %><br />-->
+	<!--<%= link_to "Downloads", "#{$MAIN_URL}/products/downloads" %><br /> -->
+
+      <% if session[:user_id] %>
+      <br />
+      <%= link_to 'Orders', orders_path %><br />
+	  <%= link_to 'Invoices', invoices_path %><br />
+      <%= link_to 'Products', products_path %><br />
+      <%= link_to 'Users', users_path %><br />
+      <br />
+      <%= button_to 'Logout', logout_path, :method => :delete %>
+      <% end %>
+
+    </div><!-- end side -->
+    <div id="main">
+      <%= yield %>
+
+	<div id="footer">
+
+	              &nbsp;
+	              <div id="footnav">
+	                  <%= link_to t('.contact'), "#{$MAIN_URL}/contact_forms/new" %> | <a href="http://www.bitcoin.org" target="_blank">bitcoin.org</a> | 
+	<% if I18n.locale.to_s == 'fr' %> 
+	<a href="https://github.com/pierrenoizat/webshop" target="_blank">Code source sur GitHub</a> 
+	<% else %>
+	<a href="https://github.com/pierrenoizat/webshop" target="_blank">Source Code on GitHub</a>
+	<% end %>
+	              </div><!-- end footnav -->
+
+	          </div><!-- end footer -->
+
+
+    </div><!-- end main -->
+  </div><!-- end columns -->
+
+</body>
+</html>

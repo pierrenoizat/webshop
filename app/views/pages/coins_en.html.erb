@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generated-by" content="Markdown PRO, http://markdownpro.com"/>
+<title></title>
+</head>
+<body>
+<h1>How the &quot;Casascius Coins&quot;  work</h1>
+
+<h3>How bitcoins can be stored on a physical coin?</h3>
+
+<p>In fact, bitcoins are stored in the bitcoin blockchain on the internet. The Bitcoin blockchain is a single database replicated hundreds of thousands of times on computers forming a P2P network. Each bitcoin is included in a series of transactions starting from the one that created that coin (the "coinbase" transaction) to the most recent transaction involving the coin or a fraction of the coin. When the owner of a bitcoin address (address A) wants to spend some coins received on address A by sending them to address B, she must use the private key controlling address A. A "Casascius Coin" includes simply the private key controlling the address shown on the coin or card. Because space is scarce on the coin, the address shown on the coin is truncated to the first 8 bits: the full address can be retrieved via a search using these first bits on <a href="http://www.blockchain.info/" title="blockchain.info" target="_blank">www.blockchain.info</a>. The photo below shows a private key revealed by peeling off the sticker of a "Casascius coin".</p><br />
+
+<br />
+<p><img src="/images/peeled-off-sticker.jpg" alt="Peeled off sticker" /><img src="/images/coin-with-peeled-sticker.jpg" alt="Coin with tampered sticker" /></p>
+
+<p><br />
+<br/></p>
+
+<p>The sticker is tamper-evident so that a physical coin showing a damaged sticker cannot be considered safe for trading bitcoins. The Paytunia cards work in the same way: the private key is in the QR code hidden underneath the tamper-evident sticker. Once revealed, the private key can be imported in a bitcoin wallet: a wallet is a software application that handles private keys, adresses and performs transaction signatures. The wallet shows also the balance available on all the addresses controlled by the private keys contained in it.</p>
+
+<h3>How to import a private key in a bitcoin wallet?</h3>
+
+<p>The simplest wallet is an application called Electrum. Download and install the latest version (for Windows or Mac, select the executable file) from : <a href="http://electrum.org/download.html" title="electrum" target="_blank">www.electrum.org/download.html</a>. The application lets you import a private key ("Import" > "Private keys" dropdown menu), computes the corresponding bitcoin address and lets you send and receive with this new address. On a paper wallet or Paytunia Card, the private key is made of 51 caracters encoded as a QR code: you can scan the QR code with a smartphone. Casascius coins use the <a href="https://en.bitcoin.it/wiki/Mini_private_key_format" title="minikey" target="_blank">"minikey"</a> private key format because of the more limited space available on a coin. A private key encoded in "minikey" format can be easily converted to the standard 51-caracter wallet import format (WIF) using the "wallet details" tab on the  <a href="https://www.bitaddress.org/bitaddress.org-v1.5-SHA1-f2e410251c8741ac65d29a1c6fb8ef6919b6ab8b.html" title="bitaddress.org" target="_blank">bitaddress.org</a> website.</p><br/>
+
+<p><img src="/images/electrum_download_page.png" /><br/><br/><br/>
+<img src="/images/blockchain_screenshot_address.png" /><br/><br/>
+<img src="/images/bitaddress_screenshot.png" /><br/><br/></p>
+<hr>
+<p>&copy; 2011-14 Pierre Noizat. All rights reserved. </p>
+
+</body>
+</html>

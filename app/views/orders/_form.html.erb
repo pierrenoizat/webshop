@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<%= simple_form_for @order, :html => { :class => 'form-horizontal' } do |f| %>
+  <% if @order.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= t('errors.template.header', :count=>@order.errors.size, :model => t('activerecord.models.order')) %></h2>
+      <p><%= t('errors.template.body') %></p>
+
+      <ul>
+      <% @order.errors.full_messages.each do |msg| %>
+        <li><%= raw msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name, t('.name') %><br />
+    <%= f.text_field :name, :size => 40 %>
+  </div>
+  <div class="field">
+    <%= f.label :address, t('.address_html') %><br />
+    <%= f.text_area :address, :rows => 3, :cols => 40 %>
+  </div>
+  <div class="field">
+    <%= f.label :city, t('.city') %><br />
+    <%= f.text_field :city, :size => 40 %>
+  </div>
+  <div class="field">
+    <%= f.label :zip_code, t('.zip') %><br />
+    <%= f.text_field :zip_code, :size => 40 %>
+  </div>
+   <div class="field">
+	
+	<% default = case I18n.locale.to_s  %>
+	<%	when 'en' then 'United States' %>
+	<%	when 'fr' then 'France' %>
+	<%	else 'United States' %>
+	<%	end %>
+    <%= f.label :country, t('.country') %><br />
+	<%= f.select :country, Order::COUNTRIES, :selected => "#{default}" %>
+  </div>
+   <div class="field">
+    <%= f.label :email, t('.email') %><br />
+    <%= f.text_field :email, :size => 40 %>
+  </div>
+<p><%=  t('.tracking') %></p>
+<br/>
+  <div class="field">
+    <%= f.label :pay_type, t('.pay_type') %><br />
+    <%= f.select :pay_type, Order::PAYMENT_TYPES,
+	:selected => "bitcoin" %>
+  </div>
+<br/>
+  <div class="actions">
+    <%= f.submit t('.submit'), :class => 'submit_class' %>
+    <%= link_to t('.cancel'), store_path %>
+  </div>
+<br/>
+<% end %>

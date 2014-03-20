@@ -1,0 +1,176 @@
+fr:
+
+  pages:
+   address_fr:
+    btcaddress: "Adresse bitcoin"
+   address_en:
+    btcaddress: "Adresse bitcoin"
+   news:
+    news: "Actus"
+    news_post: " Ce printemps, inaugurons ensemble la boutique microbitcoin.com"
+   faq:
+    title: "Questions fréquentes"
+
+  layouts:
+   application:
+    title: "   microbitcoin.fr"
+    home: "Accueil"
+    questions: "Questions"
+    news: "Actus"
+    shipping: "Adhérer à l'association"
+    cards: "Cartes Paytunia"
+    coins: "Pièces"
+    address: "Générateur d'adresse"
+    about: "A propos"
+    how: "Comment ca marche"
+    gallery: "Photos"
+    contact: "Contact"
+
+  store:
+   index:
+    title_html: "Catalogue"
+    invoice_title: "Facture"
+    add_html: "Ajouter au panier"
+
+  carts:
+   cart:
+    title: "Votre panier"
+    empty: "Vider le panier"
+    checkout: "Passer la commande"
+    sure: "Etes vous sûr(e) de vouloir vider votre panier ?"
+
+  number:
+   currency:
+    format:
+     unit: " ฿"
+     precision: 2
+     separator: "."
+     delimiter: " "
+     format: "%n%u"
+
+  order:
+   pay_type:
+    check: "Chèque"
+    bitcoin: "Bitcoin"
+
+  orders:
+   new:
+    legend: "Info de livraison à compléter"
+   form:
+    name: "Nom :"
+    address_html: "Adresse :"
+    email: "E-mail :"
+    pay_type: "Payer par : "
+    pay_prompt_html: "Choisissez votre mode de paiement.."
+    submit: "Voir la facture"
+    cancel: "Annuler"
+    select: "Choisissez le pays.."
+    city: "Ville :"
+    zip: "Code postal :"
+    country: "Pays :"
+    tracking: " Vous recevrez un numéro de suivi dès l'expédition de la commande"
+
+  sessions:
+   new:
+    cancel: "Annuler"
+
+  products:
+   coins:
+    title_html: "Catalogue"
+    invoice_title: "Facture "
+    add_html: "Ajouter au panier"
+   cards:
+    title_html: "Catalogue"
+    invoice_title: "Facture "
+    add_html: "Ajouter au panier"
+   downloads:
+    title_html: "Téléchargement"
+    invoice_title: "Facture "
+    dl_html: "Télécharger"
+    back: "Retour à la boutique"
+
+  invoices:
+   show:
+    invoice_title: "Facture N°"
+    invoice_name: "Client : "
+    ship_to: "Adresse de livraison : "
+    back_home: "Retour à la boutique"
+    sub_total: "Total produit : "
+    net_total: "Sous-total :    "
+    shipping: "Frais de port : "
+    quantity: "Quantité : "
+    unit_price: "Prix unitaire : "
+    mailer_notice: "Une facture acquittée vous sera envoyée par courriel quand la commande sera expédiée."
+    thanks: "Merci pour votre commande."
+    please_pay: "Pour finaliser votre commande, merci de payer ce montant en bitcoins à l'adresse suivante : "
+    please_pay_by_check: "Pour finaliser votre commande, faites svp un chèque à l'ordre de Pierre Noizat et écrivez à noizat@hotmail.com pour l'adresse postale."
+    please_pay_by_wire: "Pour finaliser votre commande, faites svp un virement à Paymium : "
+    valid_until: "Le paiement de votre commande devra être envoyé dans les 2 jours. Au-delà de ce délai, nous devrons annuler votre commande et vous renvoyer tout paiement envoyé tardivement."
+    download_pdf: "Télécharger la facture"
+    cancel_order: "Annuler la commande"
+    confirm_payment: "Confirmer le paiement"
+   cancel_order:
+    oops: "Oops, pas d'annulation: cliquer sur le bouton de retour à la facture."
+    continue: "Confirmer l'annulation: cliquer sur le lien de retour à la boutique."
+    back_to_invoice: "Retour à la facture"
+    back_home: "Confirmer l'annulation et retourner à la boutique"
+    sure: "Confirmer l'annulation de la facture"
+
+  notifier:
+   order_received:
+    shipping: "Frais de port : "
+    sub_total: "Sous-total : "
+    dear: "Bonjour "
+    you_ordered: "Votre commande :"
+    mailer_notice: "Votre commande sera expédiée à l'adresse suivante:"
+    thanks: "Merci pour votre commande."
+    please_pay: "Pour finaliser votre commande, merci de payer ce montant en bitcoins à l'adresse bitcoin suivante : "
+    please_pay_by_check: "Pour finaliser votre commande, faites svp un chèque à l'ordre de Pierre Noizat et écrivez à noizat@hotmail.com pour l'adresse postale."
+    please_pay_by_wire: "Pour finaliser votre commande, faites svp un virement à Paymium : "
+    valid_until: "Le paiement de votre commande devra être envoyé dans les 2 jours. Au-delà de ce délai, nous devrons annuler votre commande et vous renvoyer tout paiement envoyé tardivement."
+   payment_received:
+    dear: "Cher "
+    payment_ok: "Nous vous remercions de votre paiement que nous avons bien reçu. Votre commande va être expédiée dès que possible."
+
+  contact_forms:
+   new:
+    cancel: "Annuler"
+    name: "Nom:   "
+    email: "email: "
+    hint: "Tapez votre message ici"
+    send: "Envoyer le message"
+    title: "Contactez nous"
+   create:
+    return: "Retour à la boutique"
+    thanks: "Merci pour votre message !"
+    asap: "Nous allons y répondre dans les meilleurs délais."
+
+  activerecord:
+   errors:
+    messages:
+     inclusion: "Pas disponible: sélectionner un autre dans la liste"
+     blank: "Ce champ ne peut pas rester vide"
+     invalid: "invalide"
+   models:
+    order: "commande"
+   attributes:
+    order:
+     address: "Adresse :"
+     name: "Nom :"
+     email: "E-mail :"
+     pay_type: "Mode de paiement :"
+
+  errors:
+   template:
+    body: "Il y a un probleme avec le ou les champs suivants:"
+    header:
+     one: "1 probleme a empeche l'enregistrement de cette %{model}"
+     other: "%{count} problemes ont empeche l'enregistrement de cette %{model}"
+   
+
+  thanks: 'Merci !  Nous venons de vous envoyer un mémo de votre commande par mail.'
+  payment_received: "Montant du paiement reçu: "
+  payment_not_received: "Paiement pas encore reçu.."
+  email_sent: "Merci ! Un email vient de vous être envoyé."
+  order_canceled: "Votre commande a bien été annulée."
+  invoice_not_deleted: "Votre facture n'a pas pu être effacée car un paiement a été reçu."

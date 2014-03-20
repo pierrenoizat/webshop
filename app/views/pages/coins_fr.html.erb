@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generated-by" content="Markdown PRO, http://markdownpro.com"/>
+<title></title>
+</head>
+<body>
+<h1>Tout savoir sur les &quot;Casascius Coins&quot;</h1>
+
+<h3>Comment sont stockés les bitcoins dans une pièce ?</h3>
+
+<p>En fait les bitcoins sont stockés sur internet dans une base de données répliquée en centaines de milliers d'exemplaires identiques: la chaîne de blocs Bitcoin.
+Chaque bitcoin est contenu dans une série de transactions depuis la première ("Coinbase transaction" en anglais  ou "transaction de génération" en français, qui a créé ce bitcoin) jusqu'à la plus récente.
+Lorsque le propriétaire d'une adresse bitcoin (adresse A) veut dépenser tout ou partie des bitcoins reçus sur cette adresse A, en envoyant ces bitcoins vers une autre adresse bitcoin B, il/elle doit posséder la clé privée correspondant à l'adresse A.
+Un "casascius coin" contient donc en fait simplement la clé privée correspondant à son adresse: c'est une forme de coffre-fort numérique. Parceque l'espace est réduit sur une pièce, seuls les 8 premiers caractères de l'adresse bitcoin d'un Casacius Coin sont visibles au dos de la pièce. L'adresse complète peut être recherchée simplement à partir de ces 8 caractères sur le site <a href="http://www.blockchain.info/" title="blockchain.info" target="_blank">www.blockchain.info</a>. Le site affichera le montant en bitcoins stocké sur cette adresse
+La photo ci-dessous montre une clé privée telle qu'elle est révélée lorsque le sticker d'un "casascius coin" est décollé.</p><br />
+
+<br />
+<p><img src="/images/peeled-off-sticker.jpg" alt="Peeled off sticker" /><img src="/images/coin-with-peeled-sticker.jpg" alt="Coin with tampered sticker" /></p>
+
+<p><br />
+<br/></p>
+
+<p>Un sticker décollé ne peut pas être remis en place sans dommages visibles: c'est pourquoi le contenu en bitcoins d'une pièce avec un sticker endommagé n'est pas considéré comme sécurisé.
+Les cartes fonctionnent sur le même principe: la clé privée est cachée sous le sticker qui se détruit quand on le décolle.
+La clé privée une fois révélée peut être importée dans un wallet bitcoin: le wallet est une application qui gère des clés privées pour signer des transactions. 
+Le wallet affiche aussi le montant total reçu sur les adresses correspondant aux clés privées qu'il contient.</p>
+
+<h3>Comment importer une clée privée dans un wallet ?</h3>
+
+<p>Le plus simple aujourd'hui est le wallet "Electrum". Téléchargez et installez la dernière version de l'application Electrum depuis la page de téléchargement (pour Windows ou Mac, selectionner le fichier "executable") : <a href="http://electrum.org/download.html" title="electrum" target="_blank">www.electrum.org/download.html</a>. L'application permet d'importer une clé privée ("Import" > "Private keys" dropdown menu) puis calcule l'adresse bitcoin correspondante: vous pourrez alors recevoir et envoyer des bitcoins avec cette adresse dans votre wallet Electrum. Sur un "paper wallet" ou une carte Paytunia, la clé privée se présente sous la forme d'une chaîne de 51 caractères encodée dans un QR code: vous pouvez scanner le QR code avec un smartphone.Sous le sticker d'un Casascius Coin, la clé privée est imprimée au format <a href="https://en.bitcoin.it/wiki/Mini_private_key_format" title="minikey" target="_blank">"minikey"</a>, plus condensé et donc mieux adapté à l'espace restreint disponible sur une pièce. Une clé privée au format "minikey" peut être facilement convertie au format standard de 51 caractères dit "wallet import format (WIF)" en visitant l'onglet "wallet details" du site  <a href="https://www.bitaddress.org/bitaddress.org-v1.5-SHA1-f2e410251c8741ac65d29a1c6fb8ef6919b6ab8b.html" title="bitaddress.org" target="_blank">bitaddress.org</a>.</p><br/>
+
+<p><img src="/images/electrum_download_page.png" /><br/><br/><br/>
+<img src="/images/blockchain_screenshot_address.png" /><br/><br/>
+<img src="/images/bitaddress_screenshot.png" /><br/><br/></p>
+<hr>
+<p>&copy; 2011-14 Pierre Noizat. All rights reserved. </p>
+
+</body>
+</html>

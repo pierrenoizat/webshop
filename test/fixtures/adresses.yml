@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  order_id: 1
+  btc_address: MyString
+  available: false
+
+two:
+  order_id: 1
+  btc_address: MyString
+  available: false

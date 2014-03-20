@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<% if notice %>
+<p id="notice"><%= notice %></p>
+<% end %>
+
+<h1><%= t('.title_html') %></h1>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="javascripts/jquery.colorbox.js"></script>
+<script>
+		
+		$('a.colorbox').colorbox()
+		$.fn.colorbox.settings.opacity = 0.5
+	$(document).ready(function(){
+		//assign the ColorBox event to display product.photo_url
+		$(".group1").colorbox();
+		jQuery.noConflict();
+		
+	});
+</script>
+
+<% @products.each do |product| %>
+<% unless (( product.first_category == "Downloads" ) or ( product.stock == 0)) or (product.locale != "#{I18n.locale}") %>
+<div class="entry">
+	
+	<a href="<%= product.photo_url %>" class="group1">
+	  <% unless product.nil? %>
+		<%= image_tag product.image_url %>
+		<% end %>
+	</a>
+
+
+  <h3><%= product.title %></h3>
+  <%= sanitize(product.description) %>
+  <div class="price_line">
+	<span class="btc_price"><%= number_to_currency(product.price) %></span>
+	<% unless conv_rate.nil? %>
+	<% prix = product.price * conv_rate * $MARGIN_RATE %>
+    <span class="currency_price"><%= number_to_currency(prix, :unit => "&euro;", :separator => ",", :delimiter => " ", :format => "%n %u") %></span>
+	<% end %>
+    <%= button_to t('.add_html'), line_items_path(:product_id => product),:class =>"submit_class", :remote => true %>
+  </div>
+</div>
+<% end %>
+<% end %>

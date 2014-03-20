@@ -1,0 +1,25 @@
+<%= t('.dear') %><%= @order.name %>
+<%= t('.thanks') %>
+<%= t('.you_ordered') %>
+
+<%= render @order.line_items %>
+<%= t('.sub_total') %> : <%= number_to_currency(@order.total - @SHIPPING) %>
+<%= t('.shipping') %> : <%= number_to_currency(@SHIPPING) %>
+Total : <%= number_to_currency(@order.total) %>
+
+<% case %>
+<% when @order.pay_type == "check" %>
+<%= "Total (Euro) :  #{number_to_currency(@order.conv_total, :unit => "€", :separator => ".", :delimiter => " ", :format => "%n %u")}" %>
+<%= t('.please_pay_by_check') %>
+<%= t('.valid_until') %>
+<% when @order.pay_type == "Wire Transfer" %>
+<%= "Total (Euro) :  #{number_to_currency(@order.conv_total, :unit => "€", :separator => ".", :delimiter => " ", :format => "%n %u")}" %>
+<%= t('.please_pay_by_wire') %>
+<%= t('.valid_until') %>
+<% else %>
+<%= t('.please_pay') %>
+<%= @order.btc_address %>
+<% end %>
+
+<%= t('.mailer_notice') %>
+<%= "#{@order.address} | " + "#{@order.city} | " + "#{@order.zip_code} | " + "#{@order.country} " %>

@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+
+  <h1><%= t('.title') %></h1><br />
+  
+
+<%= simple_form_for @contact_form do |f| %>
+  <%= f.input :name, :label => t('.name') %>
+  <%= f.input :email,:label => t('.email') %>
+  <%= f.input :message,:label => 'Message:',:input_html => {:maxlength => 500 }, :as => :text %>
+  <%= f.button :submit, t('.send'), :class => 'submit_class' %> | 
+	<%= link_to t('.cancel'), store_path %>
+<% end %>

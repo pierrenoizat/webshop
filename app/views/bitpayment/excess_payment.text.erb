@@ -1,0 +1,11 @@
+Payment received: excess payment
+
+Dear <%= @invoice.name %>
+This is just to let you know that we've received your payment for your recent order.
+Your order will be shipped soon to your address:
+<%= "#{@invoice.adresse} | " + "#{@invoice.city} | " + "#{@invoice.zip_code} | " + "#{@invoice.country} " %>
+ 
+Please note that your payment exceeded the balance due for your order.
+You may request from us a refund for the difference, up to 30 days after this notification.
+After 30 days, if we do not hear from you, the amount paid in excess of the order will be considered a donation to our project.
+Thanks !

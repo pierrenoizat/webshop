@@ -1,0 +1,192 @@
+﻿<!DOCTYPE html>
+<head>
+<h1>Générez vos propres adresses localement: générateur bitcoin JavaScript</h1>
+
+<%= stylesheet_link_tag 'bitaddress' %>
+
+<%= javascript_include_tag 'bitaddressfr' %>
+
+</head>
+<body onclick="SecureRandom.seedTime();" onkeypress="SecureRandom.seedTime();" onmousemove="ninja.seed(event);">
+	<div id="main">
+
+		<div class="menu">
+			<div class="tab selected" id="singlewallet" onclick="ninja.tabSwitch(this);">Paire de clés</div>
+			<div class="tab" id="paperwallet" onclick="ninja.tabSwitch(this);">Impression de clés</div>
+			<div class="tab" id="bulkwallet" onclick="ninja.tabSwitch(this);">Clés en gros</div>
+			<div class="tab" id="detailwallet" onclick="ninja.tabSwitch(this);">Rédemption d'une clé</div>
+		</div>
+		
+		<div id="commands" class="commands">
+			<div id="singlecommands">
+				<span><input type="button" id="newaddress" value="Générer une adresse" onclick="ninja.generateNewAddressAndKey();" /></span>
+				<span class="print"><input type="button" name="print" value="Imprimer" onclick="window.print();" /></span>
+			</div>
+
+			<div id="papercommands">
+				<span>Adresses par page: <input type="text" id="paperlimitperpage" value="7" /></span>
+				<span>Adresses à générer: <input type="text" id="paperlimit" value="7" /></span>
+				<span><input type="button" id="papergenerate" value="Générer" onclick="ninja.wallets.paperwallet.build(document.getElementById('paperlimit').value * 1);" /> </span>
+				<span class="print"><input type="button" name="print" value="Imprimer" onclick="window.print();" /></span>
+			</div>
+
+			<div id="bulkcommands">
+				<span>Index de début: <input type="text" id="bulkstartindex" value="1" /></span>
+				<span>Lignes à générer: <input type="text" id="bulklimit" value="3" /></span>
+				<span><input type="button" id="bulkgenerate" value="Générer" onclick="ninja.wallets.bulkwallet.buildCSV((document.getElementById('bulklimit').value * 1), (document.getElementById('bulkstartindex').value) * 1);" /> </span>
+				<span class="print"><input type="button" name="print" value="Imprimer" onclick="window.print();" /> </span>
+			</div>
+
+			<div id="detailcommands">
+				<span>Saisir/coller clé privée (tout format): <input type="text" id="detailprivkey" value="" onfocus="this.select();" onkeypress="if (event.keyCode == 13) ninja.wallets.detailwallet.viewDetails();" /></span>
+				<span><input type="button" id="detailview" value="Rédemption" onclick="ninja.wallets.detailwallet.viewDetails();" /></span>
+				<span class="print"><input type="button" name="print" value="Imprimer" onclick="window.print();" /></span>
+			</div>
+		</div>
+		
+		<div id="wallets" class="wallets">
+			<div id="singlearea">
+				<div id="generate">
+					<span>Génération d'une adresse Bitcoin...<br /></span>
+					<span>Bouger la souris pour augmenter l'entropie...<br /></span>
+				</div>
+				<div id="keyarea" class="keyarea">
+					<div class="public">
+						<div id="qrcode_public" class="qrcode_public"></div>
+						<div class="pubaddress">
+							<span class="label">Adresse bitcoin:</span>
+							<span class="output" id="btcaddress"></span>
+						</div>
+					</div>
+					<div class="private">
+						<div id="qrcode_private" class="qrcode_private"></div>
+						<div class="privwif">
+							<span class="label">Clé privée (Wallet Import Format):</span>
+							<span class="output" id="btcprivwif"></span>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div id="paperarea"></div>
+
+			<div id="bulkarea">
+				<span class="label">Comma Separated Values:</span> <span class="format">Index,adresse,clé privée (WIF)</span>
+				<textarea rows="20" cols="88" id="bulktextarea"></textarea>
+			</div>
+
+			<div id="detailarea">
+				<div class="notes">
+				Votre clé privée Bitcoin est un secret unique que vous êtes seul à connaître. Elle peut être codée dans différents formats.
+				Vous trouverez ci-dessous l'adresse bitcoin et la clé publique qui correspondent à votre clé privée ainsi que votre clé privée encodée dans les formats les plus courants: (WIF, HEX, B64, MINI).
+				<br />
+				<br />
+				A partir de la version v0.6 , le client bitcoin enregistre les clés publiques sous forme compressée. Le client supporte aussi l'importation  et l'exportation de clés privées avec importprivkey/dumpprivkey. Le format d'une clé exportée dépend du client qui l'a générée, suivant qu'il est récent ou ancien.
+				</div>
+
+				<div class="item">
+					<div id="detailqrcodepublic" class="qrcode_public"></div>
+					<span class="label">Adresse bitcoin:</span>
+					<span class="output" id="detailaddress"></span>
+				</div>
+				<br />
+				<div class="item right">
+					<div id="detailqrcodepubliccomp" class="qrcode_public"></div>
+					<span class="label">Adresse bitcoin (compressée):</span>
+					<span class="output" id="detailaddresscomp"></span>
+				</div>
+				<br />
+				<div class="item">
+					<span class="label">Clé publique (130 caractères [0-9A-F]):</span>
+					<span class="output" id="detailpubkey"></span>
+				</div>
+				<div class="item">
+					<span class="label">Clé publique (compressée, 65 caractères [0-9A-F]):</span>
+					<span class="output" id="detailpubkeycomp"></span>
+				</div>
+				<br />
+				<div class="item">
+					<div id="detailqrcodeprivate" class="qrcode_private"></div>
+					<span class="label">Clé privée WIF (51 caractères base58, commençant avec '5'):</span>
+					<span class="output" id="detailprivwif"></span>
+				</div>
+				<br />
+				<br />
+				<div class="item right">
+					<div id="detailqrcodeprivatecomp" class="qrcode_private"></div>
+					<span class="label">Clé privée WIF (compressée, 52 caractères base58, commençant avec 'K' ou 'L'):</span>
+					<span class="output" id="detailprivwifcomp"></span>
+				</div>
+				<br />
+				<br />
+				<div class="item">
+					<span class="label">Clé privée en notation hexadecimale (64 caractères [0-9A-F]):</span>
+					<span class="output" id="detailprivhex"></span>
+				</div>
+				<div class="item">
+					<span class="label">Clé privée Base64 (44 caractères):</span>
+					<span class="output" id="detailprivb64"></span>
+				</div>
+				<div class="item" style="display: none;" id="detailmini">
+					<span class="label">Clé privée Mini Format (22, 26 or 30 caractères, commençant avec 'S'):</span>
+					<span class="output" id="detailprivmini"></span>
+				</div>
+			</div>
+		</div>
+		
+		<div id="faqs">
+			<div id="bulkfaqs">
+				<div id="bulkfaq1" class="bulkfaq"> 
+					<div id="bulkq1" class="bulkquestion" onclick="ninja.wallets.bulkwallet.openCloseFaq(1);">
+						<span>A quoi servent les clés en gros pour accepter les bitcoins sur mon site?</span>
+						<div id="bulke1" class="more"></div>
+					</div>
+					<div id="bulka1" class="bulkanswer">
+						L'approche traditionnelle pour accepter les bitcoins sur votre site impliquerait d'installer le "daemon" du client officiel bitcoin ("bitcoind"). Beaucoup de solutions d'hbergement ne permettent pas cette installation. De plus, cela impliquerait aussi d'héberger vos clés privées sur votre serveur web, où elles pourraient être compromises si ce serveur est hacké. Lorsque vous utilisez les clés en gros, vous pouvez vous contenter de charger seulement les adresses sur votre serveur web et conserver les clés privées chez vous (imprimées sur une feuille par exemple).
+					</div>
+				</div>
+
+				<div id="bulkfaq2" class="bulkfaq"> 
+					<div id="bulkq2" class="bulkquestion" onclick="ninja.wallets.bulkwallet.openCloseFaq(2);">
+						<span>Comment utiliser des clés en gros pour accepter les bitcoins sur votre site web?</span>
+						<div id="bulke2" class="more"></div>
+					</div>
+					<div id="bulka2" class="bulkanswer">
+						<ol>
+							<li>Utiliser les clés en gros pour générer "offline" et à l'avance un grand nombre d'adresses bitcoin (10 000 ou plus). Copier et coller la liste produite au format CSV dans un fichier texte sur votre ordinateur. Sauvegarder ce fichier et placer la sauvegarde dans un endroit sûr.</li>
+							<li>Importer les adresses bitcoin (mais pas les clés privées !) dans une table de votre base de données sur votre serveur web.</li>
+							<li>Proposer une option "payer en bitcoin" sur votre site web. Lorsque le client choisit cette option, lui présenter une des adresses bitcoin de votre base de données en tant qu'adresse de paiement et sauvegarder cette adresse avec sa commande.</li>
+							<li>Vous devez maintenant être prévenu quand le paiement arrive. Pour cela, rechercher via Google "bitcoin payment notification" et abonnez vous à au moins un de ces services de notification qui vous préviendra ainsi via web service, API, SMS ou email. A réception de la notification, votre application devra traiter la commande, de préférence automatiquement.
+							Pour vérifier manuellement qu'un paiement est arrivé, vous pouvez utiliser Block Explorer. Remplacer THEADDRESSGOESHERE par l'adresse bitcoin que vous souhaitez vérifier. Une transaction peut prendre entre dix minutes et une heure avant d'apparaître comme confirmée sur le réseau.
+							<br />
+							http://www.blockexplorer.com/address/THEADDRESSGOESHERE
+							<br /><br />
+							Les transactions non encore confirmées peuvent être vues au bout de quelques secondes sur http://blockchain.info/ <br />
+							</li>
+							<li>Vous pourrez utiliser les clés privées contenues dans le fichier texte que vous avez généré au début pour dépenser les bitcoins reçus.</li>
+						</ol>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+		<div id="footer" class="footer">
+			<div class="authorbtc">
+				<div>
+					<span>Donations: <b>1NiNja</b>1bUmhSoTXozBRBEtR8LeF9TGbZBN</span>
+					<span><a href="http://firstbits.com/1ninja" target="_blank">firstbits.com/1ninja</a></span>
+				</div>
+			</div>
+			<div class="authorpgp">
+				<span><a href="http://www.bitaddress.org/ninja_bitaddress.org.txt" target="_blank">Clé publique PGP</a></span>
+				<span><a href="http://www.bitaddress.org/pgpsignedmsg.txt" target="_blank">Historique signé (v1.5)</a></span>
+			</div>
+			<div class="copyright">
+				<span>Copyright bitaddress.org.</span>
+				<span>Les copyrights Javascript sont visibles dans le code source.</span>
+				<span>Sans garantie.</span>
+			</div>
+		</div>
+	</div>
+	</body>

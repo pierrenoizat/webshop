@@ -1,0 +1,9 @@
+﻿Payment received
+
+Dear <%= @invoice.name %>
+This is just to let you know that we've received your payment for your recent order.
+Your order will be shipped today to your address:
+<%= "#{@invoice.adresse} | " + "#{@invoice.city} | " + "#{@invoice.zip_code} | " + "#{@invoice.country} " %>
+ 
+Thanks !
+

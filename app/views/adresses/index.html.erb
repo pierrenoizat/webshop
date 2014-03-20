@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<h1>Listing adresses</h1>
+
+<table>
+  <tr>
+    <th>Order</th>
+    <th>Btc address</th>
+    <th>Available</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @adresses.each do |adress| %>
+  <tr>
+    <td><%= adress.order_id %></td>
+    <td><%= adress.btc_address %></td>
+    <td><%= adress.available %></td>
+    <td><%= link_to 'Show', adress %></td>
+    <td><%= link_to 'Edit', edit_adress_path(adress) %></td>
+    <td><%= link_to 'Destroy', adress, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Adresse', new_adress_path %>

@@ -1,0 +1,66 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+fr:
+  layouts:
+   application:
+    title: "La boutique iCoin.fr"
+    home: "Accueil"
+    questions: "Questions"
+    news: "Actus"
+    contact: "Contact"
+
+  store:
+   index:
+    title_html: "Catalogue"
+    add_html: "Ajouter au panier"
+
+  carts:
+   cart:
+    title: "Votre panier"
+    empty: "Vider le panier"
+    checkout: "Passer la commande"
+
+  number:
+   currency:
+    format:
+     unit: " BTC"
+     precision: 2
+     separator: ","
+     delimiter: " "
+     format: "%n&nbsp;%u"
+
+  orders:
+   new:
+    legend: "Merci de completer ce formulaire"
+   form:
+    name: "Nom"
+    address_html: "Adresse :"
+    email: "E-mail :"
+    pay_type: "Payer par :"
+    pay_prompt_html: "Choisissez votre mode de paiement"
+    submit: "Passer la commande"
+
+  activerecord:
+   errors:
+    messages:
+     inclusion: "Pas dans la liste"
+     blank: "Ce champ ne peut pas rester vide"
+   models:
+    order: "commande"
+   attributes:
+    order:
+     address: "Adresse :"
+     name: "Nom :"
+     email: "E-mail :"
+     pay_type: "Mode de paiement :"
+
+  errors:
+   template:
+    body: "Il y a un probleme avec le ou les champs suivants:"
+    header:
+     one: "1 probleme a empeche l'enregistrement de cette %{model}"
+     other: "%{count} problemes ont empeche l'enregistrement de cette %{model}"
+   
+
+  thanks: "Merci pour votre commande, nous la traitons dans les meilleurs delais."

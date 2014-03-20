@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<h1><%= t('.title_html') %></h1>
+
+<% @products.each do |product| %>
+<% unless (( product.first_category != "Cards" ) or ( product.stock == 0)) %>
+<div class="entry">
+
+	<a href="<%= product.photo_url %>" class="group1">
+	  <%= image_tag product.image_url %>
+	</a>
+
+  <h3><%= product.title %></h3>
+  <%= sanitize(product.description) %>
+  <div class="price_line">
+	<span class="btc_price"><%= number_to_currency(product.price) %></span>
+	<% unless conv_rate.nil? %>
+	<% prix = product.price * conv_rate %>
+    <span class="currency_price"><%= number_to_currency(prix, :unit => "&euro;", :separator => ",", :delimiter => " ", :format => "%n %u") %></span>
+	<% end %>
+    <%= button_to t('.add_html'), line_items_path(:product_id => product), :remote => true %>
+  </div>
+</div>
+<% end %>
+<% end %>

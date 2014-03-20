@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<h1><%= t('.title_html') %></h1>
+
+<% @products.each do |product| %>
+<% unless (( product.first_category != "Downloads" ) or ( product.stock == 0)) %>
+<div class="entry">
+  <%= image_tag(product.image_url) %>
+  <h3><%= product.title %></h3>
+  <%= sanitize(product.description) %>
+  <div class="price_line">
+	<%= link_to t('.dl_html'), product, :action => :show %>
+	 
+  </div>
+</div>
+<% end %>
+<% end %>
+<%= link_to t('.back'), store_path %>

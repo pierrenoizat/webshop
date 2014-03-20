@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<div class="depot_form">
+  <% if flash[:alert] %>
+  <p id="notice"><%= flash[:alert] %></p>
+  <% end %>
+
+<%= form_tag do %>
+<fieldset>
+  <legend>Please log in</legend>
+
+  <div>
+    <label for="name">Name:</label>
+    <%= text_field_tag :name, params[:name] %>
+  </div>
+
+  <div>
+    <label for="password">Password:</label>
+    <%= password_field_tag :password, params[:password] %>
+  </div>
+
+  <div>
+    <%= submit_tag "Login" %>
+	<%= link_to t('.cancel'), store_path %>
+  </div>
+</fieldset>
+<% end %>
+</div>

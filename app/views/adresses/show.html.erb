@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Order:</b>
+  <%= @adress.order_id %>
+</p>
+
+<p>
+  <b>Btc address:</b>
+  <%= @adress.btc_address %>
+</p>
+
+<p>
+  <b>Available:</b>
+  <%= @adress.available %>
+</p>
+
+
+<%= link_to 'Edit', edit_adress_path(@adress) %> |
+<%= link_to 'Back', adresses_path %>

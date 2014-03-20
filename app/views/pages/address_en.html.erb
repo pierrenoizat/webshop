@@ -1,0 +1,207 @@
+﻿<!DOCTYPE html>
+<head>
+<h1>Generate your own address: JavaScript Client-Side Bitcoin Wallet Generator</h1>
+
+<%= stylesheet_link_tag 'bitaddress' %>
+
+<%= javascript_include_tag 'bitaddressen' %>
+
+</head>
+<body onclick="SecureRandom.seedTime();" onkeypress="SecureRandom.seedTime();" onmousemove="ninja.seed(event);">
+	<div id="main">
+
+		<div class="menu">
+			<div class="tab selected" id="singlewallet" onclick="ninja.tabSwitch(this);">Single Wallet</div>
+			<div class="tab" id="paperwallet" onclick="ninja.tabSwitch(this);">Paper Wallet</div>
+			<div class="tab" id="bulkwallet" onclick="ninja.tabSwitch(this);">Bulk Wallet</div>
+			<div class="tab" id="detailwallet" onclick="ninja.tabSwitch(this);">Wallet Details</div>
+		</div>
+		
+		<div id="commands" class="commands">
+			<div id="singlecommands">
+				<span><input type="button" id="newaddress" value="Generate New Address" onclick="ninja.generateNewAddressAndKey();" /></span>
+				<span class="print"><input type="button" name="print" value="Print" onclick="window.print();" /></span>
+			</div>
+
+			<div id="papercommands">
+				<span>Addresses per page: <input type="text" id="paperlimitperpage" value="7" /></span>
+				<span>Addresses to generate: <input type="text" id="paperlimit" value="7" /></span>
+				<span><input type="button" id="papergenerate" value="Generate" onclick="ninja.wallets.paperwallet.build(document.getElementById('paperlimit').value * 1);" /> </span>
+				<span class="print"><input type="button" name="print" value="Print" onclick="window.print();" /></span>
+			</div>
+
+			<div id="bulkcommands">
+				<span>Start index: <input type="text" id="bulkstartindex" value="1" /></span>
+				<span>Rows to generate: <input type="text" id="bulklimit" value="3" /></span>
+				<span><input type="button" id="bulkgenerate" value="Generate" onclick="ninja.wallets.bulkwallet.buildCSV((document.getElementById('bulklimit').value * 1), (document.getElementById('bulkstartindex').value) * 1);" /> </span>
+				<span class="print"><input type="button" name="print" value="Print" onclick="window.print();" /> </span>
+			</div>
+
+			<div id="detailcommands">
+				<span>Enter Private Key (any format): <input type="text" id="detailprivkey" value="" onfocus="this.select();" onkeypress="if (event.keyCode == 13) ninja.wallets.detailwallet.viewDetails();" /></span>
+				<span><input type="button" id="detailview" value="View Details" onclick="ninja.wallets.detailwallet.viewDetails();" /></span>
+				<span class="print"><input type="button" name="print" value="Print" onclick="window.print();" /></span>
+			</div>
+		</div>
+		
+		<div id="wallets" class="wallets">
+			<div id="singlearea">
+				<div id="generate">
+					<span>Generating Bitcoin Address...<br /></span>
+					<span>MOVE your mouse around to add some extra randomness...<br /></span>
+				</div>
+				<div id="keyarea" class="keyarea">
+					<div class="public">
+						<div id="qrcode_public" class="qrcode_public"></div>
+						<div class="pubaddress">
+							<span class="label">Bitcoin Address:</span>
+							<span class="output" id="btcaddress"></span>
+						</div>
+					</div>
+					<div class="private">
+						<div id="qrcode_private" class="qrcode_private"></div>
+						<div class="privwif">
+							<span class="label">Private Key (Wallet Import Format):</span>
+							<span class="output" id="btcprivwif"></span>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div id="paperarea"></div>
+
+			<div id="bulkarea">
+				<span class="label">Comma Separated Values:</span> <span class="format">Index,Address,Private Key (WIF)</span>
+				<textarea rows="20" cols="88" id="bulktextarea"></textarea>
+			</div>
+
+			<div id="detailarea">
+				<div class="notes">
+				Your Bitcoin Private Key is a unique secret number that only you know. It can be encoded in a number of different formats.
+				Below we show the Bitcoin Address and Public Key that corresponds to your Private Key as well as your Private Key in the most popular encoding formats (WIF, HEX, B64, MINI).
+				<br />
+				<br />
+				Bitcoin v0.6+ stores public keys in compressed format.  The client now also supports import and export of private keys with importprivkey/dumpprivkey.  The format of the exported
+				private key is determined by whether the address was generated in an old or new wallet.
+				</div>
+
+				<div class="item">
+					<div id="detailqrcodepublic" class="qrcode_public"></div>
+					<span class="label">Bitcoin Address:</span>
+					<span class="output" id="detailaddress"></span>
+				</div>
+				<br />
+				<div class="item right">
+					<div id="detailqrcodepubliccomp" class="qrcode_public"></div>
+					<span class="label">Bitcoin Address (compressed):</span>
+					<span class="output" id="detailaddresscomp"></span>
+				</div>
+				<br />
+				<div class="item">
+					<span class="label">Public Key (130 characters [0-9A-F]):</span>
+					<span class="output" id="detailpubkey"></span>
+				</div>
+				<div class="item">
+					<span class="label">Public Key (compressed, 65 characters [0-9A-F]):</span>
+					<span class="output" id="detailpubkeycomp"></span>
+				</div>
+				<hr />
+				<div class="item">
+					<div id="detailqrcodeprivate" class="qrcode_private"></div>
+					<span class="label">Private Key WIF (51 characters base58, starts with a '5'):</span>
+					<span class="output" id="detailprivwif"></span>
+				</div>
+				<br />
+				<br />
+				<div class="item right">
+					<div id="detailqrcodeprivatecomp" class="qrcode_private"></div>
+					<span class="label">Private Key WIF (compressed, 52 characters base58, starts with a 'K' or 'L'):</span>
+					<span class="output" id="detailprivwifcomp"></span>
+				</div>
+				<br />
+				<br />
+				<div class="item">
+					<span class="label">Private Key Hexadecimal Format (64 characters [0-9A-F]):</span>
+					<span class="output" id="detailprivhex"></span>
+				</div>
+				<div class="item">
+					<span class="label">Private Key Base64 (44 characters):</span>
+					<span class="output" id="detailprivb64"></span>
+				</div>
+				<div class="item" style="display: none;" id="detailmini">
+					<span class="label">Private Key Mini Format (22, 26 or 30 characters, starts with an 'S'):</span>
+					<span class="output" id="detailprivmini"></span>
+				</div>
+			</div>
+		</div>
+		
+		<div id="faqs">
+			<div id="bulkfaqs">
+				<div id="bulkfaq1" class="bulkfaq"> 
+					<div id="bulkq1" class="bulkquestion" onclick="ninja.wallets.bulkwallet.openCloseFaq(1);">
+						<span>Why should I use a Bulk Wallet to accept Bitcoins on my website?</span>
+						<div id="bulke1" class="more"></div>
+					</div>
+					<div id="bulka1" class="bulkanswer">
+						The traditional approach to accepting bitcoins on your website requires that
+						you install the official bitcoin client daeman ("bitcoind"). Many website hosting packages
+						don't support installing the bitcoin daeman. Also, running the bitcoin daeman on your
+						web server means your private keys are hosted on the server and could get stolen if your web 
+						server is hacked. When using a Bulk Wallet you can upload only the bitcoin addresses 
+						and not the private keys to your web server. Then you don't have to worry about your 
+						bitcoin wallet being stolen if your web server is hacked.
+					</div>
+				</div>
+
+				<div id="bulkfaq2" class="bulkfaq"> 
+					<div id="bulkq2" class="bulkquestion" onclick="ninja.wallets.bulkwallet.openCloseFaq(2);">
+						<span>How do I use a Bulk Wallet to accept Bitcoins on my website?</span>
+						<div id="bulke2" class="more"></div>
+					</div>
+					<div id="bulka2" class="bulkanswer">
+						<ol>
+							<li>Use the Bulk Wallet tab to pre-generate a large number of bitcoin addresses (10,000+). Copy and paste the generated 
+							comma separated values (CSV) list to a secure text file on your computer. Backup the file you just created to a secure location.</li>
+							<li>Import the bitcoin addresses into a database table on your web server.  
+							(Don't put the wallet/private keys on your web server, otherwise you risk hackers stealing your coins.  
+							Just the bitcoin addresses as they will be shown to customers.)</li>
+							<li>Provide an option on your website's shopping cart for your customer to pay in Bitcoin. When the customer chooses to pay in Bitcoin you will 
+							then display one of the addresses from your database to the customer as his "payment address" and save it with his shopping cart order.</li>
+							<li>You now need to be notified when the payment arrives. Google "bitcoin payment notification" and subscribe to at least
+							one bitcoin payment notification service. There are various services that will notify you via Web Services, API, SMS, Email, etc.
+							Once you receive this notification, which could be programmatically automated, you can process the customer's order.
+							To manually check if a payment has arrived you can use Block Explorer. Replace THEADDRESSGOESHERE with the bitcoin address
+							you are checking. It could take between 10 minutes to one hour for the transaction to be confirmed.
+							<br />
+							http://www.blockexplorer.com/address/THEADDRESSGOESHERE
+							<br /><br />
+							Unconfirmed transactions can be viewed at: http://blockchain.info/ <br />
+							You should see the transaction there within 30 seconds.
+							</li>
+							<li>Bitcoins will safely pile up on the block chain. Use the original wallet file you generated in step 1 to spend them.</li>
+						</ol>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+		<div id="footer" class="footer">
+			<div class="authorbtc">
+				<div>
+					<span>Donations: <b>1NiNja</b>1bUmhSoTXozBRBEtR8LeF9TGbZBN</span>
+					<span><a href="http://firstbits.com/1ninja" target="_blank">firstbits.com/1ninja</a></span>
+				</div>
+			</div>
+			<div class="authorpgp">
+				<span><a href="ninja_bitaddress.org.txt" target="_blank">PGP Public Key</a></span>
+				<span><a href="pgpsignedmsg.txt" target="_blank">Signed Version History (v1.5)</a></span>
+			</div>
+			<div class="copyright">
+				<span>Copyright bitaddress.org.</span>
+				<span>JavaScript copyrights are included in the source.</span>
+				<span>No warranty.</span>
+			</div>
+		</div>
+	</div>
+	</body>

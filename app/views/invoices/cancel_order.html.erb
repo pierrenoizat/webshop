@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<% if notice %>
+<p id="notice"><%= notice %></p>
+<% end %>
+ <div style="font-size:larger">
+<h1><%= t('.sure') + " #{@invoice.id}"+" ?" %></h1>
+</div>
+  <% @Hache = display_invoice_lines %>
+  <% @COMPTEUR = count_lines_from_string(@invoice.contenu) %>
+
+<div id="item_list">
+<table>
+<% j = 0 %>
+<% while j < @COMPTEUR %>
+  <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
+<td class="list_description">
+  <dl>
+    <dt><%= @Hache[j].at(2) %></dt>
+	<dd>Product ref. : <%= @Hache[j].at(0) %></dd> 
+    </dl>
+</td>
+<td class="list_actions">
+<%= t('.quantity') %><b><%= @Hache[j].at(1) %></b><br/>
+<%= t('.unit_price') %><%= number_to_currency(@Hache[j].at(3), :unit => " ฿", :separator => ".", :delimiter => " ", :format => "%n %u") %><br/>
+<%= t('.sub_total') %><%= number_to_currency(@Hache[j].at(4), :unit => " ฿", :separator => ".", :delimiter => " ", :format => "%n %u") %>
+</td>
+  </tr>
+<%  j += 1 %>
+<% end # end of while statement %>
+</table>
+
+</div>
+<p>
+	<table id="invoice_table">
+		<col width = "150px">
+	<tr>
+	
+	<td id = "invoice_table_row"><b><%= t('.net_total') %></td> <td id = "invoice_table_value"><%= number_to_currency(@invoice.montant, :unit => " ฿", :separator => ".", :delimiter => " ", :format => "%n %u") %></b></td>
+	</tr>
+	<tr>
+	<% @SHIPPING = shipping_cost(@invoice.country)/($CONV_RATE*$MARGIN_RATE) %>
+	<td id = "invoice_table_row"><b><%= t('.shipping') %></td><td id = "invoice_table_value"> <%= number_to_currency(@SHIPPING, :unit => " ฿", :separator => ".", :delimiter => " ", :format => "%n %u") %></b></td>
+	</tr>
+	<tr>
+	<% @TOTAL = @invoice.montant + @SHIPPING %>
+	<td id = "invoice_table_row"><b>Total :</b></td><td id = "invoice_table_value"><b><%= number_to_currency(@TOTAL, :unit => " ฿", :separator => ".", :delimiter => " ", :format => "%n %u") %></b></td>
+	</tr>
+	</col>
+	</table>
+</p>
+<p>
+	<% @PRIX = @TOTAL * $CONV_RATE*$MARGIN_RATE %>
+	Total(Euro) : <%= number_to_currency(@PRIX, :unit => " EUR", :separator => ".", :delimiter => " ", :format => "%n %u") %>
+</p>
+<p><%= t('.oops') %></p>
+<p><%= t('.continue') %></p>
+<p>
+<div style="width:400px">
+<div style="float:left;width:130px"> 
+	<input class="submit_class" type="button" onclick="history.go(-1);" value="<%= t('.back_to_invoice') %>">
+</div>
+<div style="float:right;width:225px">
+	<%= link_to t('.back_home'), :method => :get, :action => :cancel_confirmed %>
+</div>
+</div>
+</p>
+<br/>
+<br/>
+</html>

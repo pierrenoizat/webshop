@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<ul class="locale">
+	<% names = { :fr => 'Francais', :en =>'English' }.with_indifferent_access %>
+    <% I18n.available_locales.each do |l| %>
+    <li class="locale">
+    	<%= link_to({ :l => l, :r => params[:r] }) do %>
+        <%= image_tag "/flags/en_2.png", :title => names[l] %>
+		<% end %>
+	</li>
+	<% end %>
+</ul>

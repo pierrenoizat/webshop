@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<% if notice %>
+<p id="notice"><%= notice %></p>
+<% end %>
+<p>
+  <b>Ooops ! You did not mean to cancel, let's go back to your invoice:</b>
+  <input type="button" onclick="history.go(-1);" value="Back to invoice">
+</p>
+OR
+<p>
+  <b>Now that you canceled this order, let's continue shopping:</b>
+
+	<%= link_to 'Back to store', store_path %>

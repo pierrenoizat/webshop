@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<%= form_for(@invoice) :url => invoices_path, :html => { :multipart => true } do |f| %>
+  <% if @invoice.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@invoice.errors.count, "error") %> prohibited this invoice from being saved:</h2>
+
+      <ul>
+      <% @invoice.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :montant %><br />
+    <%= f.text_field :montant %>
+  </div>
+  <div class="field">
+    <%= f.label :adresse %><br />
+    <%= f.text_field :adresse %>
+  </div>
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.text_field :email %>
+  </div>
+  <div class="field">
+    <%= f.label :contenu %><br />
+    <%= f.text_field :contenu %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
