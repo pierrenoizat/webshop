@@ -36,7 +36,7 @@ Depot::Application.configure do
     :enable_starttls_auto  => true
   }
   
-  config.action_mailer.perform_deliveries = false # comment OUT to have emails DELIVERED
+  # config.action_mailer.perform_deliveries = false # comment OUT to have emails DELIVERED
 
   # Used to broadcast invoices public URLs
  config.base_url = "http://127.0.0.1:3000"

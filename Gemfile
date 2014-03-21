@@ -21,7 +21,8 @@ gem 'chunky_png' # to use pngqr
 gem 'pngqr'
 gem 'prawn-qrcode' # to display the QR code correctly in the pdf invoice
 
-gem "prawn", "~> 0.11.1"
+# gem "prawn", "~> 0.11.1"
+gem "prawn"
 
 gem "pdf-reader", "~> 1.2.0"
 gem "Ascii85", "~> 1.0.2"

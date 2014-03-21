@@ -32,8 +32,8 @@ module Depot
 
     # Configure the default encoding used in templates for Ruby 1.9.
     config.encoding = "utf-8"
-	$DEFAULT_RATE = 800 # default conversion rate, Euro to BTC, in application_helper, in case of json error.
-	$MARGIN_RATE = 1.20 # margin over Bitcoin Charts EUR/BTC average rate
+	$DEFAULT_RATE = 500 # default conversion rate, Euro to BTC, in application_helper, in case of json error.
+	$MARGIN_RATE = 1.15 # margin over Bitcoin Charts EUR/BTC average rate
 	$CONV_RATE = $DEFAULT_RATE
 	$UNCONFIRMED_TX_URL = "http://blockchain.info/unconfirmed-transactions?format=json"
 	$RAWADDRESS_URL = "http://blockchain.info/rawaddr/" # http://blockchain.info/rawaddr/$bitcoin_address

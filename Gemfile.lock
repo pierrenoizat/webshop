@@ -218,7 +218,7 @@ DEPENDENCIES
   pdf-reader (~> 1.2.0)
   pg (~> 0.15.1)
   pngqr
-  prawn (~> 0.11.1)
+  prawn
   prawn-qrcode
   pry
   rails (= 3.0.19)
