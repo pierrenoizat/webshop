@@ -105,7 +105,7 @@ fr:
     please_pay: "Pour finaliser votre commande, merci de payer ce montant en bitcoins à l'adresse suivante : "
     please_pay_by_check: "Pour finaliser votre commande, faites svp un chèque à l'ordre de Bitcoin France et envoyez le à Bitcoin France | 8 rue Georges Ville | 75116 Paris."
     please_pay_by_wire: "Pour finaliser votre commande, faites svp un virement à Paymium : "
-    valid_until: "Le paiement devra être envoyé dans les 2 jours. Au-delà de ce délai, nous devrons annuler votre commande et vous renvoyer tout paiement envoyé tardivement."
+    valid_until: "Le paiement devra être envoyé dans les 10 jours. Au-delà de ce délai, nous devrons annuler votre commande et vous renvoyer tout paiement envoyé tardivement."
     download_pdf: "Télécharger la facture"
     cancel_order: "Annuler la commande"
     confirm_payment: "Confirmer le paiement"
@@ -127,7 +127,7 @@ fr:
     please_pay: "Pour finaliser votre commande, merci de payer ce montant en bitcoins à l'adresse bitcoin suivante : "
     please_pay_by_check: "Pour finaliser votre commande, faites svp un chèque à l'ordre de Bitcoin France et envoyez le à Bitcoin France | 8 rue Georges Ville | 75116 Paris."
     please_pay_by_wire: "Pour finaliser votre commande, faites svp un virement à Paymium : "
-    valid_until: "Le paiement devra être envoyé dans les 2 jours. Au-delà de ce délai, nous devrons annuler votre commande et vous renvoyer tout paiement envoyé tardivement."
+    valid_until: "Le paiement devra être envoyé dans les 10 jours. Au-delà de ce délai, nous devrons annuler votre commande et vous renvoyer tout paiement envoyé tardivement."
    payment_received:
     dear: "Cher "
     payment_ok: "Nous vous remercions de votre paiement que nous avons bien reçu. Votre commande va être expédiée dès que possible."

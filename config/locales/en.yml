@@ -117,7 +117,7 @@ en:
     please_pay: "To complete your order, please pay this total to the following bitcoin address : "
     please_pay_by_check: "To complete your order, please write check to the order of Bitcoin France and mail it to Bitcoin France | 8 rue Georges Ville | 75116 Paris."
     please_pay_by_wire: "To complete your order, please send the above amount by wire to : "
-    valid_until: "If the total payment is not sent within the next 2 days, your order will be canceled and any partial or late payment will be returned."
+    valid_until: "If the total payment is not sent within the next 10 days, your order will be canceled and any partial or late payment will be returned."
     download_pdf: "Download invoice"
     cancel_order: "Cancel Order"
     confirm_payment: "Confirm Payment"
@@ -140,7 +140,7 @@ en:
     please_pay: "Please pay this total to the following bitcoin address to complete your order : "
     please_pay_by_check: "To complete your order, please write check to the order of Bitcoin France and mail it to Bitcoin France | 8 rue Georges Ville | 75116 Paris."
     please_pay_by_wire: "To complete your order, please send the above amount by wire to Paymium : "
-    valid_until: "If the total payment is not sent within the next 2 days, your order will be canceled and any partial or late payment will be returned."
+    valid_until: "If the total payment is not sent within the next 10 days, your order will be canceled and any partial or late payment will be returned."
    payment_received:
     dear: "Dear "
     payment_ok: "This is just to let you know that we've received your payment for your recent order. Thanks !"

@@ -19,14 +19,17 @@ gem 'aws-sdk', '~> 1.5.7'
 gem 'rqrcode' # to use pngqr
 gem 'chunky_png' # to use pngqr
 gem 'pngqr'
-gem 'prawn-qrcode' # to display the QR code correctly in the pdf invoice
-
-# gem "prawn", "~> 0.11.1"
+gem "prawn-qrcode", "~> 0.2.0" # to display the QR code correctly in the pdf invoice
 gem "prawn"
+# gem "prawn", "~> 0.11.1"
+# gem "prawn", "~> 0.12.0"
+#gem 'prawn', '~> 1.0.0'
+gem 'pdf-core', '~> 0.2.2'
+gem 'ttfunk'
 
 gem "pdf-reader", "~> 1.2.0"
 gem "Ascii85", "~> 1.0.2"
-gem "ttfunk", "~> 1.0.3"
+# gem "ttfunk", "~> 1.0.3"
 gem "hashery", "~> 2.0.1"
 gem "ruby-rc4", "~> 0.1.5"
 
