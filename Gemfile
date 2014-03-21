@@ -8,7 +8,7 @@ gem "activemodel"
 gem "spreadsheet"
 
 # gem "nokogiri", "~> 1.6.0"
-gem "i18n", "~> 0.5.0"
+gem 'i18n', '0.5.0'
 
 gem "ffi", "~> 1.2.0"
 gem "bitcoin-addrgen",'~> 0.0.2' # this version uses the ffi gem for bindings to GMP library instead of the previous gmp gem
