@@ -20,12 +20,12 @@ gem 'rqrcode' # to use pngqr
 gem 'chunky_png' # to use pngqr
 gem 'pngqr'
 gem "prawn-qrcode", "~> 0.2.0" # to display the QR code correctly in the pdf invoice
-gem "prawn"
-# gem "prawn", "~> 0.11.1"
+# gem "prawn"
+gem "prawn", "~> 0.11.1"
 # gem "prawn", "~> 0.12.0"
 #gem 'prawn', '~> 1.0.0'
-gem 'pdf-core', '~> 0.2.2'
-gem 'ttfunk'
+gem 'pdf-core', '~> 0.2.5'
+gem 'ttfunk', '~> 1.0.3'
 
 # gem "wicked_pdf"
 # gem "wkhtmltopdf-heroku", :git => 'git://github.com/camdez/wkhtmltopdf-heroku.git'

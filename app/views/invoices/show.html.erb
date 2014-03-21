@@ -1381,13 +1381,13 @@
 <% end %>
 <p>
 <div style="width:400px">
-<!--< div style="float:left;width:130px"> -->
-<!-- <%= button_to t('.download_pdf'), { :method => :post, :action => :download }, { :type => 'submit', :class => 'submit_class' } %> -->
-<!-- </div> -->
+<div style="float:left;width:130px">
+<%= button_to t('.download_pdf'), { :method => :post, :action => :download }, { :type => 'submit', :class => 'submit_class' } %>
+</div>
 
-<!-- <div style="float:right;width:225px"> -->
+<div style="float:right;width:225px">
 <%= button_to t('.cancel_order'), { :confirm => 'Are you sure?', :method => :post, :action => :cancel_order }, { :type => 'submit', :class => 'submit_class'} %>
-<!-- </div> -->
+</div>
 </div>
 </p>
 <br/>
