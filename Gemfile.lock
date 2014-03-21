@@ -210,6 +210,7 @@ DEPENDENCIES
   ffi (~> 1.2.0)
   fileutils
   hashery (~> 2.0.1)
+  i18n (= 0.5.0)
   json
   mail (~> 2.2.19)
   mail_form

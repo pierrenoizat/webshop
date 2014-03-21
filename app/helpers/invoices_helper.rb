@@ -114,7 +114,7 @@ require 'prawn/qrcode'
      		when 'fr' then "Cheque a l'ordre de"
      		else "Write check to the order of"
      		end
-     	 pay_text = pay_text + " Pierre Noizat"
+     	 pay_text = pay_text + " Bitcoin France"
       btc_address = ""
       btc_order = false
       
@@ -131,9 +131,9 @@ require 'prawn/qrcode'
      end
      
      explanation = case I18n.locale.to_s
-    		when 'en' then "Below you can find your order details. We hope you shop with microbitcoin.fr again in the future."
+    		when 'en' then "Below you can find your order details. We hope you shop with bitcoin-france.org again in the future."
     		when 'fr' then "Details de votre commande: "
-    		else "Below you can find your order details. We hope you shop with microbitcoin.fr again in the future."
+    		else "Below you can find your order details. We hope you shop with bitcoin-france.org again in the future."
     		end
     		
      thanks = case I18n.locale.to_s
