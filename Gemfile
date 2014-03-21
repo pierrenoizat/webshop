@@ -27,6 +27,10 @@ gem "prawn"
 gem 'pdf-core', '~> 0.2.2'
 gem 'ttfunk'
 
+# gem "wicked_pdf"
+# gem "wkhtmltopdf-heroku", :git => 'git://github.com/camdez/wkhtmltopdf-heroku.git'
+
+
 gem "pdf-reader", "~> 1.2.0"
 gem "Ascii85", "~> 1.0.2"
 # gem "ttfunk", "~> 1.0.3"

@@ -160,7 +160,7 @@ require 'prawn/qrcode'
       
       move_down 50
 
-      font "Helvetica"
+      # font "Helvetica"
       font_size 18
       text_box "#{title} #{invoice_id}", :align => :right
 
