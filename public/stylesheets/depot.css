@@ -339,9 +339,10 @@
 }
 
 .depot_form legend {
-  color: #dfd;
- /* background: #141; */
-  background: rgb(46,84,112);
+  /* color: #dfd; */
+  /* background: rgb(46,84,112); */
+  color: white;
+  background: black;
   font-family: sans-serif;
   padding: 0.2em 1em;
 }
