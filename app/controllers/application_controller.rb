@@ -42,11 +42,11 @@ class ApplicationController < ActionController::Base
   	  
   	  union = $EUROPE
     	if union.include?(country)
-    		shipping_cost = 20.0  # shipping cost in EUR for the EU outside of France
-    		else shipping_cost = 35.0 # shipping cost in EUR outside the EU
+    		shipping_cost = 0  # shipping cost in EUR for the EU outside of France
+    		else shipping_cost = 0 # shipping cost in EUR outside the EU
     		end
     	if country == "France"
-    	shipping_cost = 10.0		
+    	shipping_cost = 0		
     	end
     	shipping_cost = shipping_cost.to_f # returns shipping_cost in EUR as float
   	  
