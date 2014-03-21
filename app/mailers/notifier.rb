@@ -1,5 +1,5 @@
 class Notifier < ActionMailer::Base
-  default :from => 'microbitcoin.fr'
+  default :from => 'bitcoin-france.org'
 
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
@@ -21,12 +21,12 @@ class Notifier < ActionMailer::Base
           "Spain", "Sweden", "Switzerland", "United Kingdom"]
   	
   	if union.include?(@order.country)
-  		@shipping = 20.0
+  		@shipping = 0
   		else
-  		@shipping = 35.0
+  		@shipping = 0
   		end
   	if @order.country == "France"
-  	@shipping = 10.0
+  	@shipping = 0
   	end
   	@shipping = (@shipping.to_f)/@rate # shipping in BTC
 	
@@ -34,20 +34,20 @@ class Notifier < ActionMailer::Base
 	@order.total = @order.total + @SHIPPING
 	@order.conv_total = @order.total * $CONV_RATE * $MARGIN_RATE
 
-    mail :to => order.email, :from => "Microbitcoin Support", :bcc => "noizat@hotmail.com", :subject => 'Microbitcoin Order Confirmation'
+    mail :to => order.email, :from => "Association Bitcoin France", :bcc => "noizat@hotmail.com", :subject => 'Bitcoin France Confirmation'
   end
 
   #
   def order_shipped(order)
     @order = order
 
-    mail :to => order.email, :from => "Microbitcoin Support",:bcc => "noizat@hotmail.com", :subject => 'Microbitcoin Order Shipped'
+    mail :to => order.email, :from => "Association Bitcoin France",:bcc => "noizat@hotmail.com", :subject => 'Bitcoin France Confirmation'
   end
   
   
   def form_received(contact_form)
     @contact_form = contact_form
-    mail :to => "noizat@hotmail.com", :from => "Microbitcoin.fr", :subject => 'Microbitcoin.fr Contact Form'
+    mail :to => "noizat@hotmail.com", :from => "bitcoin-france.org", :subject => 'Bitcoin France Contact Form'
   end
   
 end
