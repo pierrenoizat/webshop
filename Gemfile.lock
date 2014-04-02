@@ -105,7 +105,6 @@ GEM
     nokogiri (1.6.0-x86-mingw32)
       mini_portile (~> 0.5.0)
     ntlm-http (0.1.1)
-    pdf-core (0.2.5)
     pdf-reader (1.2.0)
       Ascii85 (~> 1.0.0)
       hashery (~> 2.0)
@@ -216,7 +215,6 @@ DEPENDENCIES
   mail (~> 2.2.19)
   mail_form
   mechanize
-  pdf-core (~> 0.2.5)
   pdf-reader (~> 1.2.0)
   pg (~> 0.15.1)
   pngqr
