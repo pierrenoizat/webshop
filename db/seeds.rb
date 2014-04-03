@@ -6,7 +6,7 @@
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Mayor.create(:name => 'Daley', :city => cities.first)
 
-rate = Rate.create(:name => 'EUR', :valeur => 2.5)
+rate = Rate.create(:name => 'EUR', :valeur => 800)
 rate.save
 
 user = User.create(:name => "Pierre", :password => "password", :password_confirmation => "password")
