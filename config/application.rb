@@ -52,7 +52,11 @@ module Depot
         "Spain", "Sweden", "Switzerland", "United Kingdom"]
         
 	# replace with your own master public key
-	$MPK = 'c56b2f46fe68c07d616ab218019fb9065493590a4bb1fb030c51d532c5598b6a834e4595e4cb7f89f07d409659078b7aa5d47026cf887ee6658910eb1d38629a'
+	# MPK for microbitcoin.fr
+	# $MPK = 'c56b2f46fe68c07d616ab218019fb9065493590a4bb1fb030c51d532c5598b6a834e4595e4cb7f89f07d409659078b7aa5d47026cf887ee6658910eb1d38629a'
+	
+	# MPK for Association Bitcoin France
+	$MPK = 'a145a1779d9f37f7e1eb535e9511bd773a0c71c3b02d45791304e9bec2d70801d86600675d8ad8a2ac8292b30a5df838f0b926b827105e6e1ed028aea7d40731'
 	
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
