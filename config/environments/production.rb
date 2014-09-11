@@ -65,7 +65,7 @@ Depot::Application.configure do
   
   # Used to broadcast invoices public URLs
 #  config.base_url = "http://localhost:3000"
-  config.base_url = "http://warm-water-12.heroku.com/" # replace with your own production platform
-  $MAIN_URL = "http://warm-water-12.heroku.com/" # replace with your own production platform
+  config.base_url = "http://membership-association.herokuapp.com/" # replace with your own production platform
+  $MAIN_URL = "http://membership-association.herokuapp.com/" # replace with your own production platform
 
 end
