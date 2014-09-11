@@ -43,6 +43,8 @@ gem 'rails', '3.0.19' # safe rails version
 #gem 'rails', '3.1.1'
 #gem 'rails', '3.1.0'
 
+gem 'rake', "~> 10.1.0"
+
 # gem 'sqlite3'
 gem "pg","~> 0.15.1" # postgreSQL database for optimal compatibility with Heroku deployment, user = postgres
 gem 'fastercsv'
