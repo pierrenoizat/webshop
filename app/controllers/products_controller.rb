@@ -3,7 +3,7 @@ skip_before_filter :authorize, :only => [ :cards, :coins, :downloads, :show]
   # GET /products
   # GET /products.xml
   def index
-    @products = Product.order("created_at ASC").all 
+    @products = Product.order("created_at DESC").all 
 
     respond_to do |format|
       format.html # index.html.erb
