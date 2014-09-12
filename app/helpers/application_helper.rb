@@ -7,7 +7,23 @@ module ApplicationHelper
     content_tag("div", attributes, &block)
   end
   
+  def bitcoin_price(product)
+    @product= product
+    if @product.currency == "BTC"
+      bitcoin_price = @product.price
+    else
+      bitcoin_price = @product.price/(conv_rate * $MARGIN_RATE)
+    end
+  end
   
+  def euro_price(product)
+    @product= product
+    if @product.currency == "EUR"
+      euro_price = @product.price
+    else
+      euro_price = @product.price*conv_rate * $MARGIN_RATE
+    end
+  end
   
   def conv_rate
     

@@ -33,10 +33,10 @@
   <h3><%= product.title %></h3>
   <%= sanitize(product.description) %>
   <div class="price_line">
-	<span class="btc_price"><%= number_to_currency(product.price) %></span>
+	<span class="btc_price"><%= number_to_currency(bitcoin_price(product)) %></span>
 	<% unless conv_rate.nil? %>
 	<% prix = product.price * conv_rate * $MARGIN_RATE %>
-    <span class="currency_price"><%= number_to_currency(prix, :unit => "&euro;", :separator => ",", :delimiter => " ", :format => "%n %u") %></span>
+    <span class="currency_price"><%= number_to_currency(euro_price(product), :unit => "&euro;", :separator => ",", :delimiter => " ", :format => "%n %u") %></span>
 	<% end %>
     <%= button_to t('.add_html'), line_items_path(:product_id => product),:class =>"submit_class", :remote => true %>
   </div>
