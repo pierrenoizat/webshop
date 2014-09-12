@@ -12,7 +12,7 @@ module ApplicationHelper
     if @product.currency == "BTC"
       bitcoin_price = @product.price
     else
-      bitcoin_price = @product.price/(conv_rate * $MARGIN_RATE)
+      bitcoin_price = @product.price/conv_rate
     end
   end
   
