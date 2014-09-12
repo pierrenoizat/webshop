@@ -33,7 +33,12 @@ require 'prawn/qrcode'
 	@product = Product.find_by_id(@prod_ref)
 	@title = @product.title
 	
-	p = @product.price
+	@rate= Rate.last
+	if @product.currency == "BTC"
+	  p = @product.price
+  else
+    p = @product.price/@rate.valeur
+  end
 	
 	oprice = @q * p
 	

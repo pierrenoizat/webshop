@@ -138,15 +138,21 @@ class ApplicationController < ActionController::Base
   end
   
   def prepare_montant_from_cart(cart)
-	@cart = cart
-	somme = 0
+	  @cart = cart
+	  somme = 0
     @cart.line_items.each do |item|
-	@product_id = item.product_id
-	@product = Product.find(@product_id)
-	@price = @product.price
-	@total_price = @price * item.quantity
-	somme = somme + @total_price
+	    @product_id = item.product_id
+	    @product = Product.find(@product_id)
+	    @price = @product.price
+	    @total_price = @price * item.quantity
+	    if @product.currency == "BTC"
+	      somme = somme + @total_price  # en BTC
+      else
+        @rate= Rate.last
+        somme = somme + @total_price/@rate.valeur
       end
+      
+    end
 	  somme
  end
   

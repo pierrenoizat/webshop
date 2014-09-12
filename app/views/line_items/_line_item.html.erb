@@ -8,7 +8,12 @@
 <% end %>
   <td><%= line_item.quantity%>&times;</td>
   <td><%= truncate( line_item.product.title, :length => 30) %></td>
-  <td class="item_price"><%= number_to_currency(line_item.total_price) %></td>
+	<% if line_item.product.currency == "BTC" %>
+  		<td class="item_price"><%= number_to_currency(line_item.total_price) %></td>
+	<% else %>
+		<% @rate = Rate.last %>
+		<td class="item_price"><%= number_to_currency(line_item.total_price/@rate.valeur) %></td>
+	<% end %>
 </tr>
 </html>
 

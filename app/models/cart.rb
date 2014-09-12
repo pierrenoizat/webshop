@@ -18,7 +18,19 @@ def add_product(product_id)
 end
 
 def total_price
-  line_items.to_a.sum { |item| item.total_price }
+  # line_items.to_a.sum { |item| item.total_price }
+  s = 0
+  @rate = Rate.last
+  line_items.each do |item|
+    if item.product.currency == "BTC"
+      s += item.total_price
+    else
+      s += (item.total_price/@rate.valeur)
+    end
+    
+  end
+  s
+  
 end
 
 
