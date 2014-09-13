@@ -37,7 +37,7 @@
 	<%	else 'United States' %>
 	<%	end %>
     <%= f.label :country, t('.country') %><br />
-	<%= f.select :country, Order::COUNTRIES, :selected => "#{default}" %>
+	<%= f.select :country, Order::COUNTRIES, :selected => "#{default}" %> 
   </div>
    <div class="field">
     <%= f.label :email, t('.email') %><br />

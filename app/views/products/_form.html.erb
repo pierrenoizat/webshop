@@ -44,6 +44,15 @@
     <%= f.label :stock %><br />
     <%= f.text_field :stock %>
   </div>
+<div class="field">
+    <%= f.label :currency %><br />
+	<% default = case I18n.locale.to_s  %>
+	<%	when 'en' then 'BTC' %>
+	<%	when 'fr' then 'EUR' %>
+	<%	else 'BTC' %>
+	<%	end %>
+    <%= f.select :currency, Product::CURRENCIES, :selected => "#{default}" %> 
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>
