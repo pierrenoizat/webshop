@@ -59,7 +59,7 @@ Depot::Application.configure do
     :domain => "google.com",
     :authentication => "plain",
     :user_name => "microbitcoin", # email will be sent from microbitcoin@gmail.com, replace with your own email (gmail) user name
-    :password => "youremailpassword", # replace with your own email password
+    :password => "password", # replace with your own email password
     :enable_starttls_auto  => true
   }
   
